@@ -6,7 +6,7 @@
           class="h-24 w-24 rounded-full object-cover"
           src="/public/avatar.png"
           alt="User Avatar"
-        />
+        >
       </div>
       <h2 class="mt-4 text-center text-2xl font-bold text-slate-800">
         Taro Yamada

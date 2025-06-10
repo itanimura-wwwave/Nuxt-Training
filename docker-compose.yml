@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   voice-vox:
     image: voicevox/voicevox_engine:cpu-latest
