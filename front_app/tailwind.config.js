@@ -13,7 +13,7 @@ export default {
       fontFamily: {
         // 'sans' を上書きして、サイト全体の基本フォントを変更する
         sans: ['Noto Sans JP', 'sans-serif'],
-      }
+      },
     },
   },
   plugins: [],
