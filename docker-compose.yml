@@ -13,11 +13,7 @@ services:
       - type: bind
         source: ./front_app
         target: /front_app
-      
-      - type: volume # 名前なしボリュームなので、downすると再アクセス不可
-        target: /front_app/node_modules
 
     ports:
       - "3000:3000"
       - "24678:24678"
-
