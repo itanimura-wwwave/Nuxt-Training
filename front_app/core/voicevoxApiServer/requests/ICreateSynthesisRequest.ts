@@ -1,6 +1,6 @@
 import type { AccentPhrase } from '~/models/IAccentPhrase'
 
-export interface CreateSynthesisRequest {
+export interface ICreateSynthesisRequest {
   accent_phrases: AccentPhrase[]
   speedScale: number
   pitchScale: number
