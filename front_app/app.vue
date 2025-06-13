@@ -1,10 +1,11 @@
+<script></script>
 <template>
   <div class="app-container">
-    <AppHeader class="w-screen h-[10vh]" />
+    <CommonAppHeader class="w-screen h-[10vh]" />
     <main>
       <NuxtPage class="w-screen h-[80vh]" />
     </main>
-    <AppFooter class="w-screen h-[10vh]" />
+    <CommonAppFooter class="w-screen h-[10vh]" />
   </div>
 </template>
 
