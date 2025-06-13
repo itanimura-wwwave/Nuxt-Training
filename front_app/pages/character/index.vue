@@ -1,3 +1,5 @@
 <template>
-  <div>bbb</div>
+  <div>
+    <Character class="w-full h-full" />
+  </div>
 </template>
