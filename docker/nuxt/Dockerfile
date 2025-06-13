@@ -2,7 +2,7 @@ FROM node:22-slim
 
 ENV TZ Asia/Tokyo
 WORKDIR /front_app
-RUN apt-get update && apt-get install -y --no-install-recommends vim \
+RUN apt-get update && apt-get install -y --no-install-recommends vim procps\
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
