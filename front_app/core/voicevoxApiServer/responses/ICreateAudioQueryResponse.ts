@@ -1,7 +1,7 @@
 import type { AccentPhrase } from '~/models/IAccentPhrase'
 
 export interface ICreateAudioQueryResponse {
-  accent_phrases: AccentPhrase[]
+  accentPhrases: AccentPhrase[]
   speedScale: number
   pitchScale: number
   intonationScale: number

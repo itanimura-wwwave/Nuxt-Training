@@ -1,5 +1,5 @@
-export interface ICreateAuditQueryRequest {
+export interface ICreateAudioQueryRequest {
   text: string
   speaker: number
-  core_version?: string
+  coreVersion?: string
 }
