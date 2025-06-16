@@ -7,23 +7,20 @@ import type { ICreateSynthesisRequest } from '~/core/voicevoxApiServer/requests/
 import type { ICreateSynthesisResponse } from '~/core/voicevoxApiServer/responses/ICreateSynthesisResponse'
 import type { AccentPhrase } from '~/models/IAccentPhrase'
 
+type CamelCaseRequestBody = Omit<ICreateSynthesisRequest, 'accent_phrases'> & {
+  accentPhrases: AccentPhrase[]
+}
+
+// accent_phrase: AccentPhrases[]のキーをキャメルケースに置換した型
+export type allCamelCaseRequestParams = Omit<requestParams, 'requestBody'> & {
+  requestBody: CamelCaseRequestBody
+}
+
 // コンポーザブル関数を定義してエクスポートする
-export function useAudioSynthesis() {
+export function useCreateAudioSynthesis() {
   const isLoading = ref(false)
   const audioSrc = ref<string | null>(null)
   const errorMessage = ref<string | null>(null)
-
-  type CamelCaseRequestBody = Omit<
-    ICreateSynthesisRequest,
-    'accent_phrases'
-  > & {
-    accentPhrases: AccentPhrase[]
-  }
-
-  // accent_phrase: AccentPhrases[]のキーをキャメルケースに置換した型
-  type allCamelCaseRequestParams = Omit<requestParams, 'requestBody'> & {
-    requestBody: CamelCaseRequestBody
-  }
 
   const generateAudioFile = async (
     requestParams: allCamelCaseRequestParams
@@ -51,6 +48,7 @@ export function useAudioSynthesis() {
       const blob: ICreateSynthesisResponse =
         await CreateSynthesisRequest(fixedRequestParams)
       audioSrc.value = URL.createObjectURL(blob)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       console.error('音声の取得に失敗しました:', err)
       errorMessage.value =
