@@ -5,7 +5,7 @@
         src="/public/usagi.png"
         alt="中国うさぎ"
         class="object-fill border-4 border-black rounded-lg h-[75%] bg-gray-500"
-      />
+      >
       <div class="h-[5%]" />
       <p class="flex justify-center font-sans text-xl md:text-3xl">
         中国うさぎ

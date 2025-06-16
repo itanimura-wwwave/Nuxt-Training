@@ -6,6 +6,7 @@ import {
 import { useCreateAudioQuery } from '~/composables/useCreateAudioQueryRequest'
 import type { requestParams } from '~/api/CreateAudioQueryRequest'
 import type { ICreateAudioQueryResponse } from '~/core/voicevoxApiServer/responses/ICreateAudioQueryResponse'
+import { USAGI_PHRASES } from '~/data/phrases'
 
 const {
   isLoading: isLoadingSynthesis,
@@ -24,9 +25,11 @@ const {
 const audioPlayerElement = ref<HTMLAudioElement | null>(null)
 
 const callGenarateAudioQuery = () => {
+  const useText: string =
+    USAGI_PHRASES[Math.floor(Math.random() * USAGI_PHRASES.length)]
   const requestParams: requestParams = {
     queryParams: {
-      text: 'えーぴーあいてすと',
+      text: useText,
       speaker: 62,
     },
   }
@@ -57,19 +60,25 @@ onUnmounted(() => {
 watch(audioQuery, (latestQuery) => {
   callGenarateAudioFile(latestQuery)
 })
+
+watch(audioSrc, async (newSrc) => {
+  // 1. audioSrcに新しいURLがセットされたか確認
+  if (newSrc) {
+    // 2. DOMの更新を待つ (v-ifで<audio>要素が描画されるのを待つ)
+    await nextTick()
+
+    // 3. audio要素の.play()メソッドを呼び出して再生を開始
+    // `?.` (オプショナルチェーン) を使って、要素がnullでない場合のみ実行する
+    audioPlayerElement.value?.play()
+  }
+})
 </script>
 
 <template>
   <div class="bg-red-200 flex flex-col justify-center">
     <CommonLoadingOverlay v-if="showLoadingView" />
     <div>
-      <audio
-        v-if="audioSrc"
-        ref="audioPlayerElement"
-        :src="audioSrc"
-        controls
-      />
-      {{ isLoadingQuery }}
+      <audio v-if="audioSrc" ref="audioPlayerElement" :src="audioSrc" />
     </div>
 
     <div class="w-full h-[30%] flex justify-center items-center bg-sky-300">
