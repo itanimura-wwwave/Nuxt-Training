@@ -5,7 +5,7 @@
     <div class="flex flex-col items-center gap-4">
       <div
         class="w-[50px] h-[50px] border-[5px] border-gray-200 border-t-blue-500 rounded-full animate-spin"
-      ></div>
+      />
       <p class="text-white font-bold">読み込み中...</p>
     </div>
   </div>

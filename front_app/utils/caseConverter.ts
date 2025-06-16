@@ -1,4 +1,4 @@
-// utils/caseConverter.ts
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 // 'snake_case' を 'camelCase' に変換する関数
 const snakeToCamel = (str: string) =>
