@@ -1,12 +1,13 @@
-FROM node:18-slim
+FROM node:22-slim
 
 ENV TZ Asia/Tokyo
 WORKDIR /front_app
-RUN apt-get update && apt-get install -y --no-install-recommends git vim \
+RUN apt-get update && apt-get install -y --no-install-recommends vim procps\
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-COPY ../../front_app/package.json ../../front_app/yarn.lock ./
-RUN yarn install
+COPY ./docker/nuxt/entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
 
 CMD ["yarn", "dev"]
